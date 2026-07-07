@@ -135,8 +135,12 @@ router.post('/refresh', async (req, res, next) => {
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET!) as { userId: string };
     const user = await prisma.user.findUnique({ where: { id: decoded.userId } });
     if (!user || !user.isActive) throw new AppError('Invalid refresh token', 401);
-    const newToken = jwt.sign({ userId: user.id, email: user.email, role: user.role }, process.env.JWT_SECRET!, { expiresIn: process.env.JWT_EXPIRES_IN || '7d' });
-    res.json({ token: newToken });
+    const newToken = jwt.sign(
+  { userId: user.id, email: user.email, role: user.role },
+  process.env.JWT_SECRET!,
+  { expiresIn: (process.env.JWT_EXPIRES_IN || '7d') as any }
+);
+res.json({ token: newToken });
   } catch (error) { next(error); }
 });
 
