@@ -7,4 +7,7 @@ RUN npm install
 
 COPY . .
 
+# Générer Prisma client
+RUN npx prisma generate
+
 CMD ["npx", "tsx", "src/index.ts"]
