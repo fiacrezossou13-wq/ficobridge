@@ -1,9 +1,11 @@
 {
   "name": "@ficobridge/api",
   "version": "1.0.0",
+  "description": "FicoBridge API",
+  "main": "src/index.ts",
   "scripts": {
-   "build": "tsc --noEmitOnError false || true"
-   "start": "node dist/index.js",
+    "build": "tsc --noEmitOnError false || true",
+    "start": "npx tsx src/index.ts",
     "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
