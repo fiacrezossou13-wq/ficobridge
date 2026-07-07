@@ -7,9 +7,5 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
-
+# Ne compile pas, exécute directement avec tsx
+CMD ["npx", "tsx", "src/index.ts"]
